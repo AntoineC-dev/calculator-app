@@ -1,7 +1,11 @@
+<script lang="ts">
+  import CalculatorScreen from "$lib/components/calculator/CalculatorScreen.svelte";
+</script>
+
 <svelte:head>
   <title>Frontend Mentor | Calculator app</title>
 </svelte:head>
 
-<main class="m-auto">
-  <h1 class="text-4xl font-bold">Hello World</h1>
+<main class="pt-8">
+  <CalculatorScreen />
 </main>
