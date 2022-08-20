@@ -3,9 +3,9 @@ import type { Calculator, Digit, Operation } from "$lib/types";
 import { writable } from "svelte/store";
 
 const defaultValue: Calculator = {
-  currentOperand: "999341456789",
-  operation: "+",
-  previousOperand: "1245",
+  currentOperand: null,
+  operation: null,
+  previousOperand: null,
   overwrite: false,
 };
 
