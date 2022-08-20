@@ -12,7 +12,7 @@ module.exports = {
     colors: {
       transparent: "transparent",
       current: "currentColor",
-      white: "hsl(0, 0, 100%)",
+      white: "hsl(0, 0%, 100%)",
       light: {
         main: "hsl(0, 0%, 90%)",
         screen: "hsl(0, 0%, 93%)",
