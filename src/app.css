@@ -2,6 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --clr-white: 0, 0%, 100%;
+    --clr-text: 60, 10%, 19%;
+    --clr-background: 0, 0%, 90%;
+    --clr-keypad: 0, 5%, 81%;
+    --clr-screen: 0, 0%, 93%;
+    --clr-accent: 25, 98%, 40%;
+    --clr-accent-shadow: 25, 99%, 27%;
+    --clr-accent-text: var(--clr-white);
+    --clr-muted: 185, 42%, 37%;
+    --clr-muted-shadow: 185, 58%, 25%;
+    --clr-muted-text: var(--clr-white);
+    --clr-neutral: 45, 7%, 89%;
+    --clr-neutral-shadow: 35, 11%, 61%;
+    --clr-neutral-text: var(--clr-text);
+  }
+
+  .theme-dark {
+    --clr-text: var(--clr-white);
+    --clr-background: 222, 26%, 31%;
+    --clr-keypad: 223, 31%, 20%;
+    --clr-screen: 224, 36%, 15%;
+    --clr-accent: 6, 63%, 50%;
+    --clr-accent-shadow: 6, 70%, 34%;
+    --clr-accent-text: var(--clr-white);
+    --clr-muted: 225, 21%, 49%;
+    --clr-muted-shadow: 224, 28%, 35%;
+    --clr-muted-text: var(--clr-white);
+    --clr-neutral: 30, 25%, 89%;
+    --clr-neutral-shadow: 28, 16%, 65%;
+    --clr-neutral-text: 221, 14%, 31%;
+  }
+
+  .theme-purple {
+    --clr-text: 52, 100%, 62%;
+    --clr-background: 268, 75%, 9%;
+    --clr-keypad: 268, 71%, 12%;
+    --clr-screen: var(--clr-keypad);
+    --clr-accent: 176, 100%, 44%;
+    --clr-accent-shadow: 177, 92%, 70%;
+    --clr-accent-text: 198, 20%, 13%;
+    --clr-muted: 281, 89%, 26%;
+    --clr-muted-shadow: 285, 91%, 52%;
+    --clr-muted-text: var(--clr-white);
+    --clr-neutral: 268, 47%, 21%;
+    --clr-neutral-shadow: 290, 70%, 36%;
+    --clr-neutral-text: var(--clr-text);
+  }
+
+  .btn-accent {
+    --clr-btn-shadow: var(--clr-accent-shadow);
+    --clr-btn-background: var(--clr-accent);
+    --clr-btn-text: var(--clr-accent-text);
+  }
+
+  .btn-muted {
+    --clr-btn-shadow: var(--clr-muted-shadow);
+    --clr-btn-background: var(--clr-muted);
+    --clr-btn-text: var(--clr-muted-text);
+  }
+
+  .btn-neutral {
+    --clr-btn-shadow: var(--clr-neutral-shadow);
+    --clr-btn-background: var(--clr-neutral);
+    --clr-btn-text: var(--clr-neutral-text);
+  }
+}
+
 @layer components {
   .word-wrap-break {
     word-wrap: break-word;

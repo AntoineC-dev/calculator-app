@@ -7,8 +7,12 @@
 </script>
 
 <div
-  class="bg-light-screen dark:bg-dark-screen purple:bg-purple-screen min-h-[6.5rem] rounded-lg p-4 flex flex-col gap-2 items-end justify-center word-wrap-break"
+  class="bg-screen min-h-[6.5rem] rounded-lg p-4 flex flex-col gap-2 items-end justify-center word-wrap-break transition-colors duration-300"
 >
-  <div class="text-2xl font-bold tracking-wide leading-none max-w-fit text-right">{previous}</div>
-  <div class="text-4xl font-bold tracking-wide leading-none max-w-fit text-right">{current}</div>
+  {#if !!$calculatorStore.previousOperand}
+    <div class="text-2xl tracking-wide leading-none max-w-fit text-right">{previous}</div>
+  {/if}
+  {#if !!$calculatorStore.currentOperand}
+    <div class="text-4xl tracking-wide leading-none max-w-fit text-right">{current}</div>
+  {/if}
 </div>
