@@ -3,7 +3,7 @@ import type { Calculator, Digit, Operation } from "$lib/types";
 import { writable } from "svelte/store";
 
 const defaultValue: Calculator = {
-  currentOperand: "999341",
+  currentOperand: "999341456789",
   operation: "+",
   previousOperand: "1245",
   overwrite: false,
@@ -23,6 +23,7 @@ export const addDigit = (digit: Digit) =>
     if (digit === "0" && currentOperand === "0") return prev;
     if (digit === "." && currentOperand?.includes(".")) return prev;
     if (digit === "." && !currentOperand) return { ...prev, currentOperand: `0${digit}` };
+    if (currentOperand?.length === 12) return prev;
     const curr = currentOperand === "0" && digit !== "." ? digit : `${currentOperand ?? ""}${digit}`;
     return { ...prev, currentOperand: curr };
   });

@@ -7,8 +7,8 @@
 </script>
 
 <div
-  class="bg-light-screen dark:bg-dark-screen purple:bg-purple-screen h-24 rounded-lg px-6 py-1 flex flex-col gap-1 items-end justify-center word-wrap-break"
+  class="bg-light-screen dark:bg-dark-screen purple:bg-purple-screen min-h-[6.5rem] rounded-lg p-4 flex flex-col gap-2 items-end justify-center word-wrap-break"
 >
-  <div class="text-3xl font-bold tracking-wide leading-none max-w-fit">{previous}</div>
-  <div class="text-4xl font-bold tracking-wide leading-none max-w-fit">{current}</div>
+  <div class="text-2xl font-bold tracking-wide leading-none max-w-fit text-right">{previous}</div>
+  <div class="text-4xl font-bold tracking-wide leading-none max-w-fit text-right">{current}</div>
 </div>
