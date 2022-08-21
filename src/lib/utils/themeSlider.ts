@@ -1,5 +1,5 @@
 import type { Theme, ThemeStore } from "$lib/types";
-import { getIndexValueFromTheme, getNextTheme, getThemeValueFromIndex } from "$lib/helpers";
+import { getIndexValueFromTheme, getNextTheme } from "$lib/helpers";
 
 interface Props {
   themeStore: ThemeStore;
