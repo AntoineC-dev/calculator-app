@@ -15,7 +15,8 @@
     </div>
     <div class="flex items-center gap-6">
       <span class="uppercase text-xs tracking-wider">Theme</span>
-      <button
+      <div
+        role="button"
         aria-label="Change the theme"
         data-theme-slider-container
         class="w-16 p-1 cursor-pointer bg-keypad rounded-2xl transition-colors duration-300"
@@ -23,7 +24,7 @@
         <div data-theme-slider-inner>
           <div data-theme-slider-dot class="w-4 aspect-square rounded-full bg-accent transition-all duration-300" />
         </div>
-      </button>
+      </div>
     </div>
   </div>
 </header>
