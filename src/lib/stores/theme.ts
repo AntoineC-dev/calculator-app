@@ -26,8 +26,7 @@ export const initTheme = (value: ThemeStore | null) => {
     themeStore.set(defaultThemeStore);
   }
 };
-export const updateTheme = (theme: Theme) => {
-  const store: ThemeStore = { theme, usePrefers: false };
+export const updateTheme = (store: ThemeStore) => {
   themeStore.set(store);
   saveStoreInCookie(store);
 };

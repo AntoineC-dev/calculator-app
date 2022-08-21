@@ -1,14 +1,14 @@
-import type { Theme } from "$lib/types";
+import type { Theme, ThemeStore } from "$lib/types";
 import { getIndexValueFromTheme, getNextTheme, getThemeValueFromIndex } from "$lib/helpers";
 
 interface Props {
-  initialValue: Theme;
-  callback: (value: Theme) => void;
+  themeStore: ThemeStore;
+  callback: (store: ThemeStore) => void;
 }
 
 export function themeSlider(wrapper: HTMLElement, props: Props) {
   const NB_STEPS = 3;
-  let currIndex = getIndexValueFromTheme(props.initialValue);
+  let currIndex = getIndexValueFromTheme(props.themeStore.theme);
   const inner = wrapper.querySelector("[data-theme-slider-inner]") as HTMLElement;
   const dot = wrapper.querySelector("[data-theme-slider-dot]") as HTMLElement;
 
@@ -40,7 +40,7 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
       if (xOffset > step.maxOffset) continue;
       if (i === currIndex) break;
       currIndex = i;
-      props.callback(step.value);
+      props.callback({ theme: step.value, usePrefers: false });
       translateDot(currIndex);
       break;
     }
@@ -50,13 +50,20 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
     if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
       const { index, theme } = getNextTheme(currIndex, e.key === "ArrowLeft" ? "left" : "right");
       currIndex = index;
-      props.callback(theme);
+      props.callback({ theme, usePrefers: false });
       translateDot(currIndex);
     }
   };
 
   inner.addEventListener("click", move);
   document.addEventListener("keydown", onArrowKey);
+
+  const onUpdate = (newTheme: Theme) => {
+    const index = getIndexValueFromTheme(newTheme);
+    if (index === currIndex) return;
+    currIndex = index;
+    translateDot(currIndex);
+  };
 
   (function init() {
     for (let i = 0; i < STEPS.length; i++) {
@@ -67,6 +74,10 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
   })();
 
   return {
+    update(newProps: Props) {
+      onUpdate(newProps.themeStore.theme);
+      props = newProps;
+    },
     destroy() {
       inner.removeEventListener("click", move);
       document.removeEventListener("keydown", onArrowKey);

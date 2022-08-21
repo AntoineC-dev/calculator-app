@@ -3,10 +3,7 @@
   import { themeSlider } from "$lib/utils";
 </script>
 
-<header
-  use:themeSlider={{ initialValue: $themeStore.theme, callback: updateTheme }}
-  class="flex justify-between items-center"
->
+<header use:themeSlider={{ themeStore: $themeStore, callback: updateTheme }} class="flex justify-between items-center">
   <!-- Title -->
   <h1 class="text-4xl">calc</h1>
   <!-- Theme Switcher -->
