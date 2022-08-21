@@ -1,5 +1,5 @@
 import type { Theme } from "$lib/types";
-import { getThemeValueFromIndex } from "$lib/helpers";
+import { getIndexValueFromTheme, getNextTheme, getThemeValueFromIndex } from "$lib/helpers";
 
 interface Props {
   initialValue: Theme;
@@ -8,7 +8,7 @@ interface Props {
 
 export function themeSlider(wrapper: HTMLElement, props: Props) {
   const NB_STEPS = 3;
-  let currValue = props.initialValue;
+  let currIndex = getIndexValueFromTheme(props.initialValue);
   const inner = wrapper.querySelector("[data-theme-slider-inner]") as HTMLElement;
   const dot = wrapper.querySelector("[data-theme-slider-dot]") as HTMLElement;
 
@@ -17,7 +17,7 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
     const step = inner.clientWidth / NB_STEPS;
     for (let i = 0; i < NB_STEPS; i++) {
       const maxOffset = Math.round(step * (i + 1));
-      steps.push({ maxOffset, index: i, value: getThemeValueFromIndex(i) });
+      steps.push({ maxOffset, value: getThemeValueFromIndex(i) });
     }
     return steps;
   };
@@ -38,21 +38,30 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
     for (let i = 0; i < STEPS.length; i++) {
       const step = STEPS[i];
       if (xOffset > step.maxOffset) continue;
-      if (step.value === currValue) break;
-      currValue = step.value;
+      if (i === currIndex) break;
+      currIndex = i;
       props.callback(step.value);
-      translateDot(step.index);
+      translateDot(currIndex);
       break;
     }
   };
 
+  const onArrowKey = (e: KeyboardEvent) => {
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      const { index, theme } = getNextTheme(currIndex, e.key === "ArrowLeft" ? "left" : "right");
+      currIndex = index;
+      props.callback(theme);
+      translateDot(currIndex);
+    }
+  };
+
   inner.addEventListener("click", move);
+  document.addEventListener("keydown", onArrowKey);
 
   (function init() {
     for (let i = 0; i < STEPS.length; i++) {
-      const step = STEPS[i];
-      if (step.value !== currValue) continue;
-      translateDot(step.index);
+      if (i !== currIndex) continue;
+      translateDot(i);
       break;
     }
   })();
@@ -60,6 +69,7 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
   return {
     destroy() {
       inner.removeEventListener("click", move);
+      document.removeEventListener("keydown", onArrowKey);
     },
   };
 }

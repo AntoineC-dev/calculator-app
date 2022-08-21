@@ -1,2 +1,2 @@
-export * from "./localStorage";
+export * from "./keyboardNavigation";
 export * from "./themeSlider";
