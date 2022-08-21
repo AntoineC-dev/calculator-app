@@ -25,7 +25,7 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
   const STEPS = generateSteps();
 
   const getXRelativeOffset = (e: MouseEvent) => {
-    const rect = (e.target as Element).getBoundingClientRect();
+    const rect = (e.currentTarget as Element).getBoundingClientRect();
     return Math.round(e.clientX - rect.left);
   };
 
@@ -35,7 +35,6 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
 
   const move = (e: MouseEvent) => {
     const xOffset = getXRelativeOffset(e);
-    console.log(xOffset);
     for (let i = 0; i < STEPS.length; i++) {
       const step = STEPS[i];
       if (xOffset > step.maxOffset) continue;
