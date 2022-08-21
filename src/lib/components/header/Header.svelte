@@ -17,6 +17,7 @@
       <span class="uppercase text-xs tracking-wider">Theme</span>
       <div
         role="button"
+        tabindex="0"
         aria-label="Change the theme"
         data-theme-slider-container
         class="w-16 p-1 cursor-pointer bg-keypad rounded-2xl transition-colors duration-300"
