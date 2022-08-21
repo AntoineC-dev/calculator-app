@@ -7,7 +7,7 @@
 
 <div
   style:grid-column="span {span}"
-  class="{type} w-full h-[4.0625rem] rounded-md pb-1 bg-btn-shadow transition-colors duration-300"
+  class="{type} w-full h-[4rem] rounded-md pb-1 bg-btn-shadow transition-colors duration-300"
 >
   <button
     on:click={callback}

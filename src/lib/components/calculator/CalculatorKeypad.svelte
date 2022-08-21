@@ -3,7 +3,9 @@
   import CalculatorButton from "./CalculatorButton.svelte";
 </script>
 
-<div class="p-6 mt-6 rounded-lg bg-keypad grid grid-cols-4 grid-rows-5 gap-3 transition-colors duration-300">
+<div
+  class="p-6 mt-6 xs:mt-8 rounded-lg bg-keypad grid grid-cols-4 grid-rows-5 gap-2 xs:gap-4 transition-colors duration-300"
+>
   <CalculatorButton label="7" callback={() => addDigit("7")} />
   <CalculatorButton label="8" callback={() => addDigit("8")} />
   <CalculatorButton label="9" callback={() => addDigit("9")} />

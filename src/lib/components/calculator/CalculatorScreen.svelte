@@ -7,7 +7,7 @@
 </script>
 
 <div
-  class="bg-screen min-h-[6.5rem] rounded-lg p-4 flex flex-col gap-2 items-end justify-center word-wrap-break transition-colors duration-300"
+  class="bg-screen min-h-[6.5rem] rounded-lg py-4 px-6 flex flex-col gap-1 items-end justify-center word-wrap-break transition-colors duration-300"
 >
   {#if !!$calculatorStore.previousOperand}
     <div class="text-2xl tracking-wide leading-none max-w-fit text-right">{previous}</div>
