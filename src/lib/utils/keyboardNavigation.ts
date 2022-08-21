@@ -1,4 +1,4 @@
-import { digits, type Digit, type Operation, type Theme } from "$lib/types";
+import { digits, type Digit, type Operation } from "$lib/types";
 
 interface Props {
   addDigit: (digit: Digit) => void;
