@@ -1,20 +1,33 @@
 import { browser } from "$app/env";
-import type { Theme } from "$lib/types";
+import type { Theme, ThemeStore } from "$lib/types";
 import { writable } from "svelte/store";
 
-const defaultTheme: Theme = "dark";
+const defaultThemeStore: ThemeStore = { theme: "dark", usePrefers: true };
 
-export const themeStore = writable<Theme>();
-export const initTheme = (value: Theme | null) => {
+const saveStoreInCookie = (store: ThemeStore) => fetch("/theme", { method: "PUT", body: JSON.stringify(store) });
+
+export const themeStore = writable<ThemeStore>();
+export const initTheme = (value: ThemeStore | null) => {
   if (value) {
-    themeStore.set(value);
+    if (browser && value.usePrefers) {
+      const theme: Theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      const store: ThemeStore = { ...value, theme };
+      if (theme !== value.theme) saveStoreInCookie(store);
+      themeStore.set(store);
+    } else {
+      themeStore.set(value);
+    }
   } else if (browser) {
-    themeStore.set(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const theme: Theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    const store: ThemeStore = { theme, usePrefers: true };
+    themeStore.set(store);
+    saveStoreInCookie(store);
   } else {
-    themeStore.set(defaultTheme);
+    themeStore.set(defaultThemeStore);
   }
 };
-export const updateTheme = (value: Theme) => {
-  themeStore.set(value);
-  fetch("/theme", { method: "PUT", body: value });
+export const updateTheme = (theme: Theme) => {
+  const store: ThemeStore = { theme, usePrefers: false };
+  themeStore.set(store);
+  saveStoreInCookie(store);
 };

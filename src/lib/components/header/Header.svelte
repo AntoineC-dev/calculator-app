@@ -4,7 +4,7 @@
 </script>
 
 <header
-  use:themeSlider={{ initialValue: $themeStore, callback: updateTheme }}
+  use:themeSlider={{ initialValue: $themeStore.theme, callback: updateTheme }}
   class="flex justify-between items-center"
 >
   <!-- Title -->

@@ -3,6 +3,11 @@ import type { Writable } from "svelte/store";
 export const themes = ["light", "dark", "purple"] as const;
 export type Theme = typeof themes[number];
 
+export interface ThemeStore {
+  theme: Theme;
+  usePrefers: boolean;
+}
+
 export const operations = ["÷", "x", "+", "-"] as const;
 export type Operation = typeof operations[number];
 
