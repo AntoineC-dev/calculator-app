@@ -4,7 +4,7 @@
 </script>
 
 <div
-  class="p-6 md:p-8 mt-6 rounded-lg bg-keypad grid grid-cols-4 grid-rows-5 gap-2 xs:gap-4 md:gap-6 transition-colors duration-300"
+  class="p-6 md:p-8 mt-6 rounded-lg sm:rounded-xl bg-keypad grid grid-cols-4 grid-rows-5 gap-2 xs:gap-4 md:gap-6 transition-colors duration-300"
 >
   <CalculatorButton label="7" callback={() => addDigit("7")} />
   <CalculatorButton label="8" callback={() => addDigit("8")} />
