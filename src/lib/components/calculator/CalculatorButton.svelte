@@ -13,6 +13,6 @@
     on:click={callback}
     class="w-full rounded-md h-full grid place-content-center bg-btn-background hover:brightness-125 transition-all duration-300"
   >
-    <span class="inline-flex pt-1 uppercase text-2xl text-btn-text transition-colors duration-300">{label}</span>
+    <span class="inline-flex pt-1 uppercase text-3xl text-btn-text transition-colors duration-300">{label}</span>
   </button>
 </div>

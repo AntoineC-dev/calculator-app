@@ -91,7 +91,7 @@
   }
 
   #app-content {
-    @apply max-w-lg w-full;
+    @apply max-w-[34rem] w-full;
   }
 }
 
