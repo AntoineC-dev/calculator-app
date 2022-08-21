@@ -1,4 +1,5 @@
-import type { Writable } from "svelte/store";
+export const cookies = ["theme"] as const;
+export type Cookie = typeof cookies[number];
 
 export const themes = ["light", "dark", "purple"] as const;
 export type Theme = typeof themes[number];
@@ -24,6 +25,3 @@ export interface Calculator {
 const localStorageHash = "b8a00d13-13e8-4edd-8dfe-bf7293a2bdbc";
 const localStorageKeys = [`${localStorageHash}-theme`] as const;
 export type LocalStorageKey = typeof localStorageKeys[number];
-
-export type SessionData = { theme: Theme };
-export type SessionStore = Writable<SessionData>;

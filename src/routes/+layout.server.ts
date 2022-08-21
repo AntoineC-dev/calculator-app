@@ -1,5 +1,5 @@
 import type { ServerLoad } from "@sveltejs/kit";
-export const load: ServerLoad = async ({ locals, setHeaders }) => {
+export const load: ServerLoad = async ({ locals }) => {
   return {
     themeStore: locals.themeStore,
   };
