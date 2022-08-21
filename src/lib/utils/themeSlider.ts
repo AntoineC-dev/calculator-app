@@ -12,10 +12,10 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
   const dot = wrapper.querySelector("[data-theme-slider-dot]") as HTMLElement;
 
   let currIndex = getIndexValueFromTheme(props.themeStore.theme);
-  const STEP_SIZE = Math.round(inner.clientWidth / 3);
 
   const translateDot = (index: number) => {
-    dot.style.transform = `translateX(${index * STEP_SIZE}px)`;
+    const position = index * (inner.clientWidth / 2) - index * (dot.clientWidth / 2);
+    dot.style.transform = `translateX(${position}px)`;
     currIndex = index;
   };
 
@@ -34,6 +34,13 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
     }
   };
 
+  const onEnterKey = (e: KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      move();
+    }
+  };
+
   const onUpdate = (newTheme: Theme) => {
     const index = getIndexValueFromTheme(newTheme);
     if (index === currIndex) return;
@@ -41,6 +48,7 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
   };
 
   container.addEventListener("click", move);
+  container.addEventListener("keydown", onEnterKey);
   document.addEventListener("keydown", onArrowKey);
   currIndex !== 0 && translateDot(currIndex);
 
@@ -51,6 +59,7 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
     },
     destroy() {
       container.removeEventListener("click", move);
+      container.removeEventListener("keydown", onEnterKey);
       document.removeEventListener("keydown", onArrowKey);
     },
   };
