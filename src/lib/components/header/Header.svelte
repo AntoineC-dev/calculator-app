@@ -1,8 +1,12 @@
 <script lang="ts">
-  import ThemeSlider from "./ThemeSlider.svelte";
+  import { themeStore, updateTheme } from "$lib/stores";
+  import { themeSlider } from "$lib/utils";
 </script>
 
-<header class="flex justify-between items-center">
+<header
+  use:themeSlider={{ initialValue: $themeStore, callback: updateTheme }}
+  class="flex justify-between items-center"
+>
   <!-- Title -->
   <h1 class="text-4xl">calc</h1>
   <!-- Theme Switcher -->
@@ -14,7 +18,11 @@
     </div>
     <div class="flex items-center gap-6">
       <span class="uppercase text-xs tracking-wider">Theme</span>
-      <ThemeSlider />
+      <div class="w-16 p-1 bg-keypad rounded-2xl transition-colors duration-300">
+        <div data-theme-slider-inner class="cursor-pointer">
+          <div data-theme-slider-dot class="w-4 aspect-square rounded-full bg-accent transition-all duration-300" />
+        </div>
+      </div>
     </div>
   </div>
 </header>

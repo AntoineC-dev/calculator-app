@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
   :root {
     --clr-white: 0, 0%, 100%;
@@ -20,7 +19,7 @@
     --clr-neutral-text: var(--clr-text);
   }
 
-  .theme-dark {
+  [data-theme="dark"] {
     --clr-text: var(--clr-white);
     --clr-background: 222, 26%, 31%;
     --clr-keypad: 223, 31%, 20%;
@@ -36,7 +35,7 @@
     --clr-neutral-text: 221, 14%, 31%;
   }
 
-  .theme-purple {
+  [data-theme="purple"] {
     --clr-text: 52, 100%, 62%;
     --clr-background: 268, 75%, 9%;
     --clr-keypad: 268, 71%, 12%;
@@ -69,9 +68,34 @@
     --clr-btn-background: var(--clr-neutral);
     --clr-btn-text: var(--clr-neutral-text);
   }
+
+  html {
+    @apply h-full antialiased;
+  }
+
+  html,
+  body,
+  #app-wrapper,
+  #app-content {
+    @apply flex flex-col;
+  }
+
+  body,
+  #app-wrapper {
+    @apply grow;
+  }
+
+  #app-wrapper {
+    justify-content: center;
+    @apply isolate bg-background text-text transition-colors duration-300 px-6 py-8 justify-center xs:items-center;
+  }
+
+  #app-content {
+    @apply max-w-lg w-full;
+  }
 }
 
-@layer components {
+@layer utilities {
   .word-wrap-break {
     word-wrap: break-word;
     word-break: break-all;

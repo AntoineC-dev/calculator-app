@@ -1,11 +1,9 @@
-import type { ThemeValue } from "$lib/types";
-import { getInitialData, persistData } from "$lib/utils";
+import type { Theme } from "$lib/types";
 import { writable } from "svelte/store";
 
-const defaultValue: ThemeValue = "dark";
-
-export const themeStore = writable<ThemeValue>(
-  getInitialData({ defaultValue, key: "b8a00d13-13e8-4edd-8dfe-bf7293a2bdbc-theme" })
-);
-themeStore.subscribe((data) => persistData({ data, key: "b8a00d13-13e8-4edd-8dfe-bf7293a2bdbc-theme" }));
-export const updateTheme = (value: ThemeValue) => themeStore.set(value);
+export const themeStore = writable<Theme>();
+export const initTheme = (value: Theme) => themeStore.set(value);
+export const updateTheme = (value: Theme) => {
+  themeStore.set(value);
+  fetch("/theme", { method: "PUT", body: value });
+};

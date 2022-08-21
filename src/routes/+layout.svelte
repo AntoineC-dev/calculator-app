@@ -1,17 +1,15 @@
 <script lang="ts">
   import "../app.css";
-  import { onMount } from "svelte";
-  import { themeStore } from "$lib/stores";
-  import { handleThemeClass } from "$lib/helpers";
+  import { initTheme, themeStore } from "$lib/stores";
+  import type { Theme } from "$lib/types";
   import Header from "$lib/components/header/Header.svelte";
-
-  let root: HTMLElement;
-  onMount(() => {
-    root = document.documentElement;
-  });
-  $: handleThemeClass(root, $themeStore);
+  export let data: { theme: Theme };
+  $: initTheme(data.theme);
 </script>
 
-<Header />
-
-<slot />
+<div id="app-wrapper" data-theme={$themeStore ?? data.theme}>
+  <div id="app-content">
+    <Header />
+    <slot />
+  </div>
+</div>

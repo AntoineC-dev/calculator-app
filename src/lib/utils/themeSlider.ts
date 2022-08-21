@@ -1,8 +1,9 @@
-import type { ThemeValue } from "$lib/types";
+import type { Theme } from "$lib/types";
+import { getThemeValueFromIndex } from "$lib/helpers";
 
 interface Props {
-  initialValue: ThemeValue;
-  callback: (value: ThemeValue) => void;
+  initialValue: Theme;
+  callback: (value: Theme) => void;
 }
 
 export function themeSlider(wrapper: HTMLElement, props: Props) {
@@ -10,12 +11,6 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
   let currValue = props.initialValue;
   const inner = wrapper.querySelector("[data-theme-slider-inner]") as HTMLElement;
   const dot = wrapper.querySelector("[data-theme-slider-dot]") as HTMLElement;
-
-  const getThemeValueFromIndex = (index: number): ThemeValue => {
-    if (index === 0) return "dark";
-    if (index === 1) return "light";
-    return "purple";
-  };
 
   const generateSteps = () => {
     let steps = [];
@@ -26,6 +21,7 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
     }
     return steps;
   };
+
   const STEPS = generateSteps();
 
   const getXRelativeOffset = (e: MouseEvent) => {
@@ -39,6 +35,7 @@ export function themeSlider(wrapper: HTMLElement, props: Props) {
 
   const move = (e: MouseEvent) => {
     const xOffset = getXRelativeOffset(e);
+    console.log(xOffset);
     for (let i = 0; i < STEPS.length; i++) {
       const step = STEPS[i];
       if (xOffset > step.maxOffset) continue;
