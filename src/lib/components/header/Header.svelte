@@ -9,9 +9,24 @@
   <!-- Theme Switcher -->
   <div class="flex flex-col items-end gap-1">
     <div class="flex items-center w-16 px-1">
-      <span class="text-xs leading-none flex-1 text-center">1</span>
-      <span class="text-xs leading-none flex-1 text-center">2</span>
-      <span class="text-xs leading-none flex-1 text-center">3</span>
+      <button
+        aria-label="Choose dark theme"
+        disabled={$themeStore.theme === "dark"}
+        on:click={() => updateTheme({ theme: "dark", usePrefers: false })}
+        class="text-xs leading-none flex-1 text-center">1</button
+      >
+      <button
+        aria-label="Choose light theme"
+        disabled={$themeStore.theme === "light"}
+        on:click={() => updateTheme({ theme: "light", usePrefers: false })}
+        class="text-xs leading-none flex-1 text-center">2</button
+      >
+      <button
+        aria-label="Choose purple theme"
+        disabled={$themeStore.theme === "purple"}
+        on:click={() => updateTheme({ theme: "purple", usePrefers: false })}
+        class="text-xs leading-none flex-1 text-center">3</button
+      >
     </div>
     <div class="flex items-center gap-6">
       <span class="uppercase text-xs tracking-wider">Theme</span>
